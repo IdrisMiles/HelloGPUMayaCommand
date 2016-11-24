@@ -9,6 +9,9 @@
 #include <maya/MPxCommand.h>
 
 
+#include "include/CudaKernels.h"
+
+
 class HelloGPUMayaCommand : public MPxCommand
 {
 public:

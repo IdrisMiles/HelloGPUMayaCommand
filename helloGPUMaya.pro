@@ -21,6 +21,7 @@ MAYALIBS =  -lOpenMaya \
 QMAKE_CFLAGS += -fPIC
 QMAKE_CXXFLAGS += -fPIC
 
+
 # --------------------------------------------------
 # LINUX specific stuff
 # --------------------------------------------------
@@ -78,6 +79,6 @@ LIBS += -lcudart -lcurand
 
 cuda.input = CUDA_SOURCES
 cuda.output = $$CUDA_OBJECTS_DIR/${QMAKE_FILE_BASE}_cuda.o
-cuda.commands = $$NVCC -m$$SYSTEM_TYPE $$GENCODE_FLAGS -c -o ${QMAKE_FILE_OUT} ${QMAKE_FILE_NAME} $$NVCC_OPTIONS $$CUDA_INC -fPIC
+cuda.commands = $$NVCC -m$$SYSTEM_TYPE $$GENCODE_FLAGS -c -o ${QMAKE_FILE_OUT} ${QMAKE_FILE_NAME} $$NVCC_OPTIONS $$CUDA_INC -Xcompiler '-fPIC'
 cuda.dependency_type = TYPE_C
 QMAKE_EXTRA_COMPILERS += cuda

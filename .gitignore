@@ -1,3 +1,6 @@
 *.qmake.stash
 *.obj
 *.so*
+*.pro.user
+*.o
+Makefile

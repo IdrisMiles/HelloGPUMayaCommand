@@ -25,9 +25,10 @@ QMAKE_CXXFLAGS += -fPIC
 # --------------------------------------------------
 # LINUX specific stuff
 # --------------------------------------------------
-linux-g++*:MAYALOCATION = /usr/autodesk/maya2017/
+linux-g++*:MAYALOCATION = /usr/autodesk/maya2016/
+linux-g++*:MAYADEVKIT = /public/devel/2015/mayaDevkit_2016
 linux-g++*:TEMPLATE = lib
-linux-g++*:INCLUDEPATH += $$MAYALOCATION/include
+linux-g++*:INCLUDEPATH += $$MAYALOCATION/include $$MAYADEVKIT/include
 linux-g++*:LIBS += -L$$MAYALOCATION/lib $$MAYALIBS
 linux-g++*:DEFINES += linux
 
@@ -66,7 +67,7 @@ GENCODE_FLAGS += -arch=sm_50
 NVCC_OPTIONS = --use_fast_math
 
 # include paths
-INCLUDEPATH += $(CUDA_PATH)/include
+INCLUDEPATH += $(CUDA_PATH)/include/cuda
 
 # library directories
 QMAKE_LIBDIR += $$CUDA_PATH/lib/x86_64-linux-gnu

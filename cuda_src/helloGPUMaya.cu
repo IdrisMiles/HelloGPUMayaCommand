@@ -29,7 +29,7 @@ __global__ void cuVectorInc(float * vec, const unsigned int n)
 void CudaKernels::VectorInc(float * vec, const unsigned int n)
 {
     thrust::device_vector<float> d_vec(vec, vec+n);
-    float * d_vec_ptr = thrust::raw_pointer_cast(&vec[0]);
+    float * d_vec_ptr = thrust::raw_pointer_cast(&d_vec[0]);
 
     unsigned int blockSize = 1024;
     unsigned int gridSize = iDivUp(n, blockSize);

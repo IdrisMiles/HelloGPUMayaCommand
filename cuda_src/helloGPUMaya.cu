@@ -2,9 +2,7 @@
 
 // CUDA includes
 #include <cuda_runtime.h>
-//#include <cuda.h>
-//#include <cuda_runtime_api.h>
-//#include <device_functions.h>
+#include <thrust/device_vector.h>
 
 
 unsigned int iDivUp(unsigned int a, unsigned int b)
@@ -30,7 +28,13 @@ __global__ void cuVectorInc(float * vec, const unsigned int n)
 
 void CudaKernels::VectorInc(float * vec, const unsigned int n)
 {
+    thrust::device_vector<float> d_vec(vec, vec+n);
+    float * d_vec_ptr = thrust::raw_pointer_cast(&vec[0]);
+
     unsigned int blockSize = 1024;
     unsigned int gridSize = iDivUp(n, blockSize);
-    cuVectorInc<<<gridSize, blockSize>>>(vec, n);
+    cuVectorInc<<<gridSize, blockSize>>>(d_vec_ptr, n);
+    cudaThreadSynchronize();
+
+    thrust::copy(d_vec.begin(), d_vec.end(), vec);
 }
